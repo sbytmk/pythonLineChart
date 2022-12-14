@@ -11,7 +11,7 @@ gs = wb.create_sheet('グラフ')
 
 df = pd.read_csv('./data/matome.csv', encoding='shift-jis')
 
-today_df = df.query('発生日 >= "2022/12/12"')
+today_df = df.query('発生日 >= "2022/12/14"')
 
 
 today_df['発生日'] = pd.to_datetime(
