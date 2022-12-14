@@ -5,7 +5,7 @@ cd /d %~dp0
 
 del *.csv
 
-xcopy /S /D:12/9/22 X:\mold_info\mold_yokohama\nissei\MONDAT C:\Users\sbytm\Desktop\python_study\data
+xcopy /S /D:12/9/22 X:\mold_info\mold_yokohama\nissei\MONDAT C:\Users\sbytm\OneDrive\Documents\GitHub\pythonLineChart\data
 
 rem ファイルはShift-JISが前提なので、文字コードがUTF-8の場合は設定
 rem chcp 65001
