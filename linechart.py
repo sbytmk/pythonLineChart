@@ -6,7 +6,7 @@ from openpyxl.utils.dataframe import dataframe_to_rows
 wb = Workbook()
 ws = wb.active
 
-gs = wb.create_sheet('グラフ')
+meisai = wb.create_sheet('明細データ')
 
 df = pd.read_csv('./data/matome.csv', encoding='shift-jis',
                  usecols=['発生日', '発生時刻', '射出最前進位置[mm]', 'V-P切換圧[MPa]', '射出最前進圧[MPa]', '射出ピーク圧[MPa]'])
@@ -32,7 +32,7 @@ select_df1 = select_df[['発生日時', '射出最前進位置[mm]',
 
 
 for row in dataframe_to_rows(select_df1, index=None, header=True):
-    ws.append(row)
+    meisai.append(row)
 
 
 # 射出最前進位置作成
@@ -40,8 +40,9 @@ line = LineChart()
 line.style = 26
 line.height = 17
 line.width = 50
-data = Reference(ws, min_col=2, max_col=3,  min_row=1, max_row=ws.max_row)
-labels = Reference(ws, min_col=1, min_row=2, max_row=ws.max_row)
+data = Reference(meisai, min_col=2, max_col=3,
+                 min_row=1, max_row=meisai.max_row)
+labels = Reference(meisai, min_col=1, min_row=2, max_row=meisai.max_row)
 
 line.add_data(data, titles_from_data=True)
 line.set_categories(labels)
@@ -49,7 +50,7 @@ line.set_categories(labels)
 line.x_axis.title = '射出最前進位置のしきい値は「1.89mm」　これ以上はショートリスク有り！'
 
 
-gs.add_chart(line, 'A1')
+ws.add_chart(line, 'A1')
 
 # VP切替圧のグラフ作成
 
@@ -57,8 +58,9 @@ line2 = LineChart()
 line2.style = 26
 line2.height = 17
 line2.width = 50
-data2 = Reference(ws, min_col=5, max_col=6, min_row=1, max_row=ws.max_row)
-labels2 = Reference(ws, min_col=4, min_row=2, max_row=ws.max_row)
+data2 = Reference(meisai, min_col=5, max_col=6,
+                  min_row=1, max_row=meisai.max_row)
+labels2 = Reference(meisai, min_col=4, min_row=2, max_row=meisai.max_row)
 
 line2.add_data(data2, titles_from_data=True)
 line2.set_categories(labels2)
@@ -66,7 +68,7 @@ line2.set_categories(labels2)
 line2.x_axis.title = 'VP切替圧のしきい値は「47.3Mpa」　これ以下はショートリスク有り！'
 
 
-gs.add_chart(line2, 'A40')
+ws.add_chart(line2, 'A40')
 
 
 wb.save('H:\マイドライブ\成形機モニターデータ\横浜モニターデータ\横浜モニターデータ.xlsx')
