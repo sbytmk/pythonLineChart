@@ -9,7 +9,9 @@ ws = wb.active
 
 gs = wb.create_sheet('グラフ')
 
-df = pd.read_csv('./data/matome.csv', encoding='shift-jis')
+df = pd.read_csv('./data/matome.csv', encoding='shift-jis',
+                 usecols=['発生日', '発生時刻', '射出最前進位置[mm]', 'V-P切換圧[MPa]'])
+
 
 today_df = df.query('発生日 >= "2022/12/14"')
 
