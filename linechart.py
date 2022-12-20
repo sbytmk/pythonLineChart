@@ -24,8 +24,8 @@ select_df = today_df[['発生日', '射出最前進位置[mm]',
 select_df.columns = ['発生日時', '射出最前進位置[mm]', 'V-P切換圧[MPa]',
                      '射出最前進位置[mm]しきい値', 'V-P切換圧[MPa]しきい値']
 
-select_df['射出最前進位置[mm]しきい値'] = 1.89
-select_df['V-P切換圧[MPa]しきい値'] = 47.3
+select_df['射出最前進位置[mm]しきい値'] = 2.70
+select_df['V-P切換圧[MPa]しきい値'] = 58.0
 
 select_df1 = select_df[['発生日時', '射出最前進位置[mm]',
                         '射出最前進位置[mm]しきい値', '発生日時', 'V-P切換圧[MPa]', 'V-P切換圧[MPa]しきい値']]
@@ -47,7 +47,8 @@ labels = Reference(meisai, min_col=1, min_row=2, max_row=meisai.max_row)
 line.add_data(data, titles_from_data=True)
 line.set_categories(labels)
 
-line.x_axis.title = '射出最前進位置のしきい値は「1.89mm」　これ以上はショートリスク有り！'
+#line.x_axis.title = '射出最前進位置のしきい値は「イエロー：1.89mm」　これ以上はショートリスク有り！'
+line.x_axis.title = '射出最前進位置のしきい値は「モモイロ：2.70mm」　これ以上はショートリスク有り！'
 
 
 ws.add_chart(line, 'A1')
@@ -65,7 +66,8 @@ labels2 = Reference(meisai, min_col=4, min_row=2, max_row=meisai.max_row)
 line2.add_data(data2, titles_from_data=True)
 line2.set_categories(labels2)
 
-line2.x_axis.title = 'VP切替圧のしきい値は「47.3Mpa」　これ以下はショートリスク有り！'
+#line2.x_axis.title = 'VP切替圧のしきい値は「イエロー：47.3Mpa」　これ以下はショートリスク有り！'
+line2.x_axis.title = 'VP切替圧のしきい値は「モモイロ:58.0Mpa」　これ以下はショートリスク有り！'
 
 
 ws.add_chart(line2, 'A40')
