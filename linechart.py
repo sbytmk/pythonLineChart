@@ -12,7 +12,7 @@ df = pd.read_csv('./data/matome.csv', encoding='shift-jis',
                  usecols=['発生日', '発生時刻', '射出最前進位置[mm]', 'V-P切換圧[MPa]', '射出最前進圧[MPa]', '射出ピーク圧[MPa]'])
 
 
-today_df = df.query('発生日 >= "2022/12/23"')
+today_df = df.query('発生日 >= "2023/1/1"')
 
 
 today_df['発生日'] = pd.to_datetime(
@@ -24,7 +24,7 @@ select_df = today_df[['発生日', '射出最前進位置[mm]',
 select_df.columns = ['発生日時', '射出最前進位置[mm]', 'V-P切換圧[MPa]',
                      '射出最前進位置[mm]しきい値', 'V-P切換圧[MPa]しきい値']
 
-select_df['射出最前進位置[mm]しきい値'] = 2.70
+select_df['射出最前進位置[mm]しきい値'] = 3.00
 select_df['V-P切換圧[MPa]しきい値'] = 58.0
 
 select_df1 = select_df[['発生日時', '射出最前進位置[mm]',
@@ -48,7 +48,7 @@ line.add_data(data, titles_from_data=True)
 line.set_categories(labels)
 
 #line.x_axis.title = '射出最前進位置のしきい値は「イエロー：1.89mm」　これ以上はショートリスク有り！'
-line.x_axis.title = '射出最前進位置のしきい値は「モモイロ：2.70mm」　これ以上はショートリスク有り！'
+line.x_axis.title = '射出最前進位置のしきい値は「モモイロ：3.00mm」　これ以上はショートリスク有り！'
 
 
 ws.add_chart(line, 'A1')
