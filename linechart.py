@@ -12,7 +12,7 @@ df = pd.read_csv('./data/matome.csv', encoding='shift-jis',
                  usecols=['発生日', '発生時刻', '射出最前進位置[mm]', 'V-P切換圧[MPa]', '射出最前進圧[MPa]', '射出ピーク圧[MPa]'])
 
 
-today_df = df.query('発生日 >= "2023/1/1"')
+today_df = df.query('発生日 >= "2023/01/01"')
 
 
 today_df['発生日'] = pd.to_datetime(
